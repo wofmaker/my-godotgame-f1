@@ -1,0 +1,13 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; but it can also be edited via text editor if you know what you're doing.
+
+[application]
+
+config/name="Dungeon Haul"
+config/features=PackedStringArray("4.4")
+config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
