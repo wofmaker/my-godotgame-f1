@@ -14,23 +14,23 @@ func test_initial_state_is_menu() -> void:
 	assert_eq(_gm.current_state, _gm.State.MENU, "초기 상태는 MENU")
 
 func test_valid_transition_menu_to_base() -> void:
-	var result := _gm.transition_to(_gm.State.BASE)
+	var result = _gm.transition_to(_gm.State.BASE)
 	assert_true(result, "MENU → BASE 전환 성공")
 	assert_eq(_gm.current_state, _gm.State.BASE)
 
 func test_valid_transition_base_to_dungeon() -> void:
 	_gm.transition_to(_gm.State.BASE)
-	var result := _gm.transition_to(_gm.State.DUNGEON)
+	var result = _gm.transition_to(_gm.State.DUNGEON)
 	assert_true(result, "BASE → DUNGEON 전환 성공")
 	assert_eq(_gm.current_state, _gm.State.DUNGEON)
 
 func test_invalid_transition_menu_to_dungeon() -> void:
-	var result := _gm.transition_to(_gm.State.DUNGEON)
+	var result = _gm.transition_to(_gm.State.DUNGEON)
 	assert_false(result, "MENU → DUNGEON 전환 차단")
 	assert_eq(_gm.current_state, _gm.State.MENU)
 
 func test_same_state_transition_returns_false() -> void:
-	var result := _gm.transition_to(_gm.State.MENU)
+	var result = _gm.transition_to(_gm.State.MENU)
 	assert_false(result, "동일 상태 전환 거부")
 
 func test_pause_and_resume() -> void:

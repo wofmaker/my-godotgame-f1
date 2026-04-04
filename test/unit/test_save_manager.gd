@@ -20,7 +20,7 @@ func after_each() -> void:
 
 func test_save_creates_file() -> void:
 	_pd.gold = 42
-	var result := _sm.save_game()
+	var result = _sm.save_game()
 	assert_true(result, "저장 성공")
 	assert_true(FileAccess.file_exists("user://save_data.json"), "파일 존재")
 
@@ -28,12 +28,12 @@ func test_load_restores_saved_data() -> void:
 	_pd.gold = 123
 	_sm.save_game()
 	_pd.gold = 0
-	var result := _sm.load_game()
+	var result = _sm.load_game()
 	assert_true(result, "로드 성공")
 	assert_eq(_pd.gold, 123, "저장된 값 복원")
 
 func test_load_nonexistent_returns_false() -> void:
-	var result := _sm.load_game()
+	var result = _sm.load_game()
 	assert_false(result, "파일 없으면 false")
 
 func test_delete_save_removes_file() -> void:

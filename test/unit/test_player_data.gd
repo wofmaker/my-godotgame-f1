@@ -36,14 +36,14 @@ func test_to_save_dict_contains_required_keys() -> void:
 	assert_eq(data["gold"], 100)
 
 func test_load_from_dict_restores_data() -> void:
-	var data := {"gold": 200, "abyss_stone": 10, "unlocked_buildings": ["forge"], "base_layout": {}, "version": 1}
+	var data = {"gold": 200, "abyss_stone": 10, "unlocked_buildings": ["forge"], "base_layout": {}, "version": 1}
 	_pd.load_from_dict(data)
 	assert_eq(_pd.gold, 200)
 	assert_eq(_pd.abyss_stone, 10)
 	assert_eq(_pd.unlocked_buildings.size(), 1)
 
 func test_load_from_dict_defaults_missing_keys() -> void:
-	var data := {}
+	var data = {}
 	_pd.load_from_dict(data)
 	assert_eq(_pd.gold, 0, "누락 키는 기본값 0")
 
