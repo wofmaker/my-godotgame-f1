@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(godot *)",
+      "Bash(gh *)",
+      "Bash(git *)"
+    ],
+    "deny": [
+      "Bash(rm -rf /)",
+      "Bash(git push --force*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "#!/usr/bin/env bash\n# 위험 명령 차단\nCMD=\"$TOOL_INPUT_COMMAND\"\nif echo \"$CMD\" | grep -qE 'rm\\s+(-rf|-r\\s+-f|-f\\s+-r)\\s+(/|~|\\$HOME)'; then\n  echo '❌ BLOCKED: Dangerous rm command targeting / or ~' >&2\n  exit 2\nfi\nif echo \"$CMD\" | grep -qE 'git\\s+push\\s+.*--force'; then\n  echo '❌ BLOCKED: Force push is not allowed' >&2\n  exit 2\nfi\nexit 0"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "#!/usr/bin/env bash\nif command -v git &>/dev/null && git rev-parse --git-dir &>/dev/null 2>&1; then\n  CHANGED=$(git status --porcelain 2>/dev/null | wc -l)\n  if [[ \"$CHANGED\" -gt 0 ]]; then\n    echo \"⚠️ 미커밋 변경 ${CHANGED}건 있음 — /commit 확인 필요\" >&2\n  fi\nfi\nexit 0"
+          }
+        ]
+      }
+    ]
+  }
+}

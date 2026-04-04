@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp C:/Users/wofma/.claude/skills/harness/templates/issue-runner.sh.example C:/dev/game/.harness/issue-runner.sh)",
+      "Bash(chmod +x C:/dev/game/.harness/issue-runner.sh)"
+    ]
+  }
+}
