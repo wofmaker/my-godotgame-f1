@@ -3,17 +3,27 @@ extends GutTest
 
 var _sm: Node
 var _pd: Node
+var _original_gold: int
+var _original_abyss_stone: int
 
 func before_each() -> void:
-	_pd = preload("res://scripts/autoload/player_data.gd").new()
-	_pd.name = "PlayerData"
-	get_tree().root.add_child(_pd)
+	_pd = PlayerData  # autoload 싱글톤 직접 사용
+	# 원본 상태 백업
+	_original_gold = _pd.gold
+	_original_abyss_stone = _pd.abyss_stone
+	# 테스트용 초기 상태
+	_pd.gold = 0
+	_pd.abyss_stone = 0
+	_pd.unlocked_buildings.clear()
+	_pd.base_layout.clear()
 	_sm = preload("res://scripts/autoload/save_manager.gd").new()
 	add_child(_sm)
 
 func after_each() -> void:
 	_sm.queue_free()
-	_pd.queue_free()
+	# 원본 상태 복원
+	_pd.gold = _original_gold
+	_pd.abyss_stone = _original_abyss_stone
 	# 테스트 세이브 파일 정리
 	if FileAccess.file_exists("user://save_data.json"):
 		DirAccess.remove_absolute("user://save_data.json")
