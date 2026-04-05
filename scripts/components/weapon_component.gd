@@ -162,7 +162,7 @@ func _get_pooled_projectile() -> Node:
 	var farthest_travelled: float = -1.0
 	for proj in _projectile_pool:
 		if proj.travelled > farthest_travelled:
-			farthest_travelled = proj._travelled
+			farthest_travelled = proj.travelled
 			farthest = proj
 
 	if farthest != null:
