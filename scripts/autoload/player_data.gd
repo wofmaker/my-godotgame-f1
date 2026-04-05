@@ -8,6 +8,7 @@ var current_floor: int = 0
 var current_level: int = 1
 var current_health: int = 100
 var max_health: int = 100
+var equipped_weapon_path: String = "res://resources/weapons/sword.tres"
 
 # --- 영속 데이터 (기지/해금/화폐) ---
 var gold: int = 0
@@ -21,6 +22,7 @@ func reset_run_data() -> void:
 	current_floor = 0
 	current_level = 1
 	current_health = max_health
+	equipped_weapon_path = "res://resources/weapons/sword.tres"
 
 func to_save_dict() -> Dictionary:
 	return {

@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctestcombat001"]
+
+[ext_resource type="PackedScene" uid="uid://bplayer001" path="res://scenes/player/player.tscn" id="1_player"]
+[ext_resource type="Script" path="res://scenes/levels/dummy_enemy.gd" id="2_enemy"]
+
+[sub_resource type="GDScript" id="GDScript_enemydraw"]
+script/source = "extends Node2D
+
+func _draw() -> void:
+	draw_circle(Vector2.ZERO, 12.0, Color.RED)
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_enemy"]
+radius = 12.0
+
+[node name="TestCombat" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector2(200, 300)
+
+[node name="DummyEnemy1" type="StaticBody2D" parent="." groups=["damageable"]]
+position = Vector2(250, 300)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_enemy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyEnemy1"]
+shape = SubResource("CircleShape2D_enemy")
+
+[node name="BodyDraw" type="Node2D" parent="DummyEnemy1"]
+script = SubResource("GDScript_enemydraw")
+
+[node name="DummyEnemy2" type="StaticBody2D" parent="." groups=["damageable"]]
+position = Vector2(400, 300)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_enemy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyEnemy2"]
+shape = SubResource("CircleShape2D_enemy")
+
+[node name="BodyDraw" type="Node2D" parent="DummyEnemy2"]
+script = SubResource("GDScript_enemydraw")
+
+[node name="DummyEnemy3" type="StaticBody2D" parent="." groups=["damageable"]]
+position = Vector2(250, 250)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_enemy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyEnemy3"]
+shape = SubResource("CircleShape2D_enemy")
+
+[node name="BodyDraw" type="Node2D" parent="DummyEnemy3"]
+script = SubResource("GDScript_enemydraw")

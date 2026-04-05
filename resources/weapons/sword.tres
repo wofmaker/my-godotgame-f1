@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=2 format=3 uid="uid://csword001"]
+
+[ext_resource type="Script" path="res://resources/weapons/weapon_resource.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+weapon_name = "Sword"
+damage = 15
+attack_speed = 1.5
+attack_range = 64.0
+attack_pattern = 0
+sword_angle_deg = 30.0
+projectile_speed = 300.0
+pierce_count = 1
