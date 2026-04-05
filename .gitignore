@@ -1,7 +1,8 @@
-# Godot
-.godot/
-*.import
-export_presets.cfg
+# Dependencies
+node_modules/
+
+# Build
+dist/
 
 # Harness (템플릿에서 재생성 — git 추적 불필요)
 .harness/
@@ -12,10 +13,10 @@ Thumbs.db
 
 # IDE
 .vscode/
+.idea/
 *.swp
 *.swo
 
-# Node (issue-runner SDK 의존성)
-node_modules/
-package.json
-package-lock.json
+# Env
+.env
+.env.local
