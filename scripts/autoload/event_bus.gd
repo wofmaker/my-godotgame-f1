@@ -21,3 +21,8 @@ signal currency_changed(gold: int, abyss_stone: int)
 # 세이브
 signal save_completed
 signal load_completed
+
+# 전투
+signal weapon_attack_performed(attack_pattern: int, position: Vector2)
+signal enemy_damaged(enemy: Node, damage: int, position: Vector2)
+signal weapon_changed(weapon: Resource)

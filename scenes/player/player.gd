@@ -19,6 +19,7 @@ var _cooldown_timer: float = 0.0
 var _invincible_timer: float = 0.0
 
 @onready var _body_draw: Node2D = %BodyDraw
+@onready var _weapon_component: WeaponComponent = %WeaponComponent
 
 
 func _physics_process(delta: float) -> void:
@@ -86,3 +87,13 @@ func is_invincible() -> bool:
 
 func is_dash_ready() -> bool:
 	return _cooldown_timer <= 0.0 and not _is_dashing
+
+
+func equip_weapon(weapon: WeaponResource) -> void:
+	if _weapon_component != null:
+		_weapon_component.set_weapon(weapon)
+		EventBus.weapon_changed.emit(weapon)
+
+
+func get_weapon_component() -> WeaponComponent:
+	return _weapon_component
